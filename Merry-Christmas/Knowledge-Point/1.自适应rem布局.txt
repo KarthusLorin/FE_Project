@@ -1,0 +1,18 @@
+自适应rem布局
+
+rem是什么？
+rem和em单位一样，都是一个相对单位,不同的是em是相对于元素的父元素的font-size进行计算,rem是相对于根元素html的font-size进行计算。
+这样一来rem就绕开了复杂的层级关系，实现了类似于em单位的功能。
+默认情况下浏览器给的字体大小是16px，按照转化关系 16px = 1rem
+
+自适应处理：
+使用rem布局的时候,为了兼容不同的分辨率,我们应该要动态的修正根字体的大小,让所有的用rem单位的子元素跟着一起缩放,从而达到自适应的效果。
+一般情况在项目的最前面加载一段js来修改html的font-size，针对不同分辨率计算font-size，监听浏览器更改html的font-size。
+var docEl = document.documentElement
+docEl.style.fontSize = 20 * (docEl.clientWidth / 320) + 'px';
+给html设置fontSize大小，其实就是在DOMContentLoaded或者resize变化后调整fontSize的大小，从而调整rem的比值关系。
+
+总结：
+根据实际情况通过设计稿与当前可视区的大小做一个比例关系，通过这个比例进行缩放处理
+
+详细例子见1.js
