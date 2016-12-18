@@ -1,0 +1,78 @@
+<!--代码给出了animation的2种写法，可以具体观察下，一种是快捷写法，一种是全写，注意浏览器的兼容性需要加前缀-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>圣诞主题</title>
+    <style type="text/css">
+    .bird {
+        min-width: 91px;
+        min-height: 71px;
+        top: 10%;
+        position: absolute;
+        z-index: 10;
+        background: url(http://img.mukewang.com/55ade1700001b38302730071.png)
+    }
+    
+    .birdFly {
+        /*写法1*/
+        -moz-animation: bird-slow 400ms steps(1,start) infinite;
+        
+        /*写法2*/
+        -webkit-animation-name: bird-slow;
+        -webkit-animation-duration: 400ms;
+        -webkit-animation-timing-function: steps(3);
+        -webkit-animation-iteration-count: infinite;
+    }
+
+    /*定义动画*/
+    @keyframes bird-slow {
+        0% {
+            background-position: -0px 0px;
+        }
+        100% {
+            background-position: -273px 0px;
+        }
+    }
+
+    @-webkit-keyframes bird-slow {
+        0% {
+            background-position: -0px 0px;
+        }
+        100% {
+            background-position: -273px 0px;
+        }
+    }
+    
+    @-moz-keyframes bird-slow {
+        0% {
+            background-position: -0px 0px;
+        }
+        100% {
+            background-position: -273px 0px;
+        }
+    }
+
+    </style>
+</head>
+
+<body>
+    steps(3)实现帧动画
+    <div class="bird birdFly"></div>
+</body>
+<script type="text/javascript">
+var docEl = document.documentElement,
+    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+    recalc = function() {
+        //设置根字体大小
+        docEl.style.fontSize = 20 * (docEl.clientWidth / 320) + 'px';
+    };
+
+//绑定浏览器缩放与加载时间
+window.addEventListener(resizeEvt, recalc, false);
+document.addEventListener('DOMContentLoaded', recalc, false);
+</script>
+
+</html>
