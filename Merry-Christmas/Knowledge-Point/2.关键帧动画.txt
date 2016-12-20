@@ -32,6 +32,6 @@ background-position-x: -0px
 background-position-x: -91px
 background-position-x: -182px
 
-总结：关键帧steps(x)就是平分animation为x块，不用麻烦得去写动画的过程位置。
+总结：关键帧steps(x)就是平分keyframe为x块，不用麻烦得去写动画的过程位置。
 
 详细例子见2.js
