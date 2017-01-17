@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画一条直线</title>
+</head>
+<body>
+    <canvas id="canvas" style="border: 1px solid #aaa;display: block;margin: 50px auto;"></canvas>
+    <script>
+        window.onload = function(){
+            var canvas = document.getElementById('canvas');
+            canvas.width = 800;
+            canvas.height = 800;
+            var context = canvas.getContext('2d');
+            context.moveTo(100,100);
+            context.lineTo(700,700);
+            context.lineWidth = 10;
+            context.strokeStyle = "#058";
+            context.stroke();
+        }
+    </script>
+</body>
+</html>
