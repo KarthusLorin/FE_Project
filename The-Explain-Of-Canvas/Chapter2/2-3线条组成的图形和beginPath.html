@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画一条直线</title>
+</head>
+<body>
+    <canvas id="canvas" style="border: 1px solid #aaa;display: block;margin: 50px auto;">当前浏览器不支持Canvas，请更换浏览器后再试</canvas>
+    <script>
+        window.onload = function(){
+            var canvas = document.getElementById('canvas');
+            canvas.width = 800;
+            canvas.height = 800;
+            var context = canvas.getContext('2d');
+
+            // moveTo是将canvas的笔尖移动到某个点
+            //lineTo是直接将线条拉过去
+            context.moveTo(100,350);
+            context.lineTo(300,400);
+            context.lineTo(100,600);
+
+            context.moveTo(300,200);
+            context.lineTo(500,400);
+            context.lineTo(300,600);
+
+            context.moveTo(500,200);
+            context.lineTo(700,400);
+            context.lineTo(500,600);
+
+            context.lineWidth = 10;
+            context.strokeStyle = "#058";
+            context.stroke();
+        }
+    </script>
+</body>
+</html>
