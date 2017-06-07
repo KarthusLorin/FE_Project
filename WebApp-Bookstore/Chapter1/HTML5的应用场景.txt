@@ -1,0 +1,17 @@
+HTML5应用场景
+
+1.PC端Web站点
+
+常常使用HTML5的本地存储。
+
+一般来说，如果使在PC端WEB站点上用了HTML5，那么一般需要使用渐强式设计，即：
+支持HTML5的浏览器使用HTML5的API，不支持HTML5的浏览器不使用HTML5.
+总而言之，在PC端Web站点使用HTML5需要对API层面进行兼容性处理。
+
+2.基于webview的hybrid native的APP开发
+
+优点是更新比较灵活。
+
+3.Web APP开发
+
+常用于HTML5广告、HTML5游戏以及移动端HTML5网站。
