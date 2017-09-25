@@ -60,10 +60,15 @@
         if(direction === 'next') month++;
 
         var html = datepicker.buildUi(year, month);
-        $wrapper = document.createElement('div');
-        $wrapper.className = 'ui-datepicker-wrapper';
+        $wrapper = document.querySelector('.ui-datepicker-wrapper');
+        if(!$wrapper){
+            $wrapper = document.createElement('div');
+            document.body.appendChild($wrapper);
+            $wrapper.className = 'ui-datepicker-wrapper';
+        }
+        
         $wrapper.innerHTML = html;
-        document.body.appendChild($wrapper);
+        
     };
 
     datepicker.init = function(input){
@@ -97,11 +102,14 @@
             // 上一月
             if($target.classList.contains('ui-datepicker-prev-btn')){
 
+                datepicker.render('prev');
 
             } else if($target.classList.contains('ui-datepicker-next-btn')){
 
+                datepicker.render('next');
+
             }
-        });
+        }, false);
     };
 
 
