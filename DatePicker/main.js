@@ -55,7 +55,6 @@
             year = monthData.year;
             month = monthData.month;
         }
-
         if(direction === 'prev') month--;
         if(direction === 'next') month++;
 
@@ -79,7 +78,7 @@
         var isOpen = false;
 
         $input.addEventListener('click', function(){
-            if(isOpen){
+            if(isOpen) {
                 $wrapper.classList.remove('ui-datepicker-wrapper-show');
                 isOpen = false;
             } else {
