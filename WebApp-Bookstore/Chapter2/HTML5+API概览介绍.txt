@@ -1,0 +1,16 @@
+HTML5 API：https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5
+
+1.DOM节点操作QuerySelector
+
+使用简单，性能更好，速度更快
+
+2.跨域通信postMessage
+
+3.window.performance 进行性能测试
+window.performance.timing 监控页面加载速度
+
+4.localStorage  本地存储
+window.localStorage.setItem('a','1');
+设置a的值为1
+window.localStorage.getItem('a');   //a
+获取a的值
