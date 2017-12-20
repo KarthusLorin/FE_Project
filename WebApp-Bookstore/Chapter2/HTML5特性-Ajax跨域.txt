@@ -1,0 +1,11 @@
+Ajax跨域
+
+同域：
+1.协议相同
+2.域名相同
+
+html5的ajax若想进行跨域，只需设置浏览器的请求头：
+header('Access-Control-Allow-Origin: *');
+* 代表所有的域都可以请求，所有网页的域都可以跨。
+如果想设置特定的网页可以跨域，只需设置对应的网页的URL：
+header('Access-Control-Allow-Origin: www.baidu.com,www.qq.com');
