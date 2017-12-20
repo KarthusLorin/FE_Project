@@ -1,0 +1,10 @@
+1.Web Workers
+
+Web Workers的官方解释：
+Web Workers能够把 JavaScript 计算委托给后台线程，通过允许这些活动以防止使交互型事件变得缓慢。
+
+其实Web Worker是h5把非UI、DOM操作的事件交给后台操作的一个API。
+
+使用方法：
+var myWorker = new Worker('my_task.js');
+//注里面my_task.js必须为同域的JS文件，此文件里不能放所有跟UI相关的代码，可以放有关后台的计算线程。
