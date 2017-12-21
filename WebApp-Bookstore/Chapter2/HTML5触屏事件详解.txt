@@ -1,0 +1,7 @@
+HTML5触屏事件：
+
+1.touchstart事件：触摸点击时触发
+
+2.touchmove事件：触摸移动时触发
+
+3.touchend事件：触摸松开时触发
