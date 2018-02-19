@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <link rel="stylesheet" type="text/css" href="jasmine-2.8.0/jasmine.css">
 </head>
 <body>
 
 <a href="#" onclick="get1()">发送get1请求</a>
 
 </body>
+<script src="jasmine-2.8.0/jasmine.js"></script>
+<script src="jasmine-2.8.0/jasmine-html.js"></script>
+<script src="jasmine-2.8.0/boot.js"></script>
 <script src="jquery.min.js"></script>
 <script>
     function get1() {
@@ -19,5 +22,24 @@
             }
         )
     }
+
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
+    var bsae = "http://localhost:8080/test";
+    describe("ajax跨域", function () {
+        it ("get1请求", function (done) {
+            var result;
+            $.getJSON(bsae + "/get1").then(function (jsonObj) {
+                result = jsonObj
+            });
+
+            setTimeout(function () {
+                expect(result).toEqual({
+                    "data": "get1 ok"
+                });
+
+                done();
+            }, 100)    ;
+        });
+    });
 </script>
 </html>
