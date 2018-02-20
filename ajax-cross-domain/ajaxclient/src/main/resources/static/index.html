@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<a href="#" onclick="get1()">发送get1请求</a>
+<!--<a href="#" onclick="get1()">发送get1请求</a>-->
 
 </body>
 <script src="jasmine-2.8.0/jasmine.js"></script>
@@ -24,12 +24,31 @@
     }
 
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
-    var bsae = "http://localhost:8080/test";
+    var base = "http://localhost:8080/test";
     describe("ajax跨域", function () {
         it ("get1请求", function (done) {
             var result;
-            $.getJSON(bsae + "/get1").then(function (jsonObj) {
+            $.getJSON(base + "/get1").then(function (jsonObj) {
                 result = jsonObj
+            });
+
+            setTimeout(function () {
+                expect(result).toEqual({
+                    "data": "get1 ok"
+                });
+
+                done();
+            }, 100)    ;
+        });
+
+        it ("jsonp请求", function (done) {
+            var result;
+            $.ajax({
+                url: base + "/get1",
+                dataType: "jsonp",
+                success: function (json) {
+                    result = json
+                }
             });
 
             setTimeout(function () {

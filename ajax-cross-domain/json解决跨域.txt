@@ -1,0 +1,7 @@
+json解决跨域
+
+JSONP是什么？
+JSON全称为JSON with Padding，是JSON的一种补充的使用方式，不是官方协议
+
+使用JSONP服务器后台要改动吗？
+使用JSONP时，服务器后台需要进行改动，如果依然返回的是json对象，则会报错
