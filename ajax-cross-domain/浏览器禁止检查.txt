@@ -1,0 +1,8 @@
+禁止浏览器检查
+
+方法：命令行参数启动浏览器后添加参数--disable-web-security
+
+例：
+chrome --disable-web-security
+
+--disabl-web-security参数的作用是禁止浏览器进行跨域检查
