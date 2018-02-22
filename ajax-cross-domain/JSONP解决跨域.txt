@@ -1,0 +1,18 @@
+JSONP解决跨域
+
+JSONP是什么？
+JSON全称为JSON with Padding，是JSON的一种补充的使用方式，不是官方协议
+
+使用JSONP服务器后台要改动吗？
+JSONP不同于一般的ajax请求返回json对象，JSONP返回的是script脚本
+使用JSONP时，服务器后台需要进行改动，如果依然返回的是json对象，则会报错
+
+JSONP实现原理
+浏览器只对XHR进行跨域问题校验，而JSONP的类型是script，所以可以回避跨域校验
+JSONP通过创建一个动态的script脚本，在script中把请求发出去
+注：请求后跟着一个下划线，是防止请求被缓存，如果允许缓存，则可以在ajax请求中加上cache: true
+
+JSONP有什么弊端
+1.服务器需要改动代码支持
+2.只支持get
+3.发送的不是XHR请求

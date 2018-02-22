@@ -46,6 +46,8 @@
             $.ajax({
                 url: base + "/get1",
                 dataType: "jsonp",
+                jsonp: "callback2",
+                cache: true,
                 success: function (json) {
                     result = json
                 }

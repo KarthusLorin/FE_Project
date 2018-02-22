@@ -7,6 +7,6 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpRespon
 public class JsonpAdvice extends AbstractJsonpResponseBodyAdvice {
 
     public JsonpAdvice() {
-        super("callback");
+        super("callback2");
     }
 }
