@@ -1,0 +1,27 @@
+在HTTP响应头中增加指定的字段，允许对方调用
+
+可以在两种地方增加
+1.apache/nginx（HTTP服务器）
+2.tomcat（应用服务器）
+
+被调用方 - Filter解决方案
+
+浏览器先执行还是先判断？
+执行跨域代码，发现后台服务器正常返回数据，再chrome的network中也可以找到返回的数据。
+所以，先浏览器先执行然后判断。
+
+浏览器如何判断？
+仔细观察可以发现，跨域请求的请求头中多了一个Origin字段，这个字段的值是当前域的信息。
+浏览器发现请求是跨域的时候，会在当前请求的请求头中添加一个当前域的信息的字段，等返回后检查响应头中有没有相应的信息。
+如果没有，则报错。
+
+Filter解决方案主要是在http响应头上添加如下信息：
+Access-Control-Allow-Origin: 域名
+只要域名包含请求头中Origin字段的值，则支持当前跨域
+如果 Access-Control-Allow-Origin: * ，则支持所有域名访问
+该字段必填
+
+如果加上 Access-Control-Allow-Methods: 请求方法，则表示只支持特定的请求方法进行跨域
+如Access-Control-Allow-Methods: GET则表示只支持GET方法进行跨域
+如果Access-Control-Allow-Methods: * 则表示支持所有方法进行跨域，此时，写了和没写一样
+此字段可选，非必填
