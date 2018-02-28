@@ -9,6 +9,34 @@
 浏览器先执行还是先判断？
 执行跨域代码，发现后台服务器正常返回数据，再chrome的network中也可以找到返回的数据。
 所以，先浏览器先执行然后判断。
+注意：简单请求先执行后判断，非简单请求先判断后执行
+在发生跨域时，浏览器检测到非简单的跨域请求，会自动发出一个OPTION请求，就是所谓的预检命令，当预检通过的时候，才会把真正的请求发出去。
+即非简单请求在network中可以看到两次请求，一次OPTION请求，一次真正的请求。
+由于非简单命令太过耗费时间（请求两次），所以可以在响应请求头中添加一个字段：
+Access-Control-Max-Age: 3600
+即在一个小时内，该请求可以缓存。
+此时，在第一次访问这个方法需要请求两次，而第二次则只需要请求一次，去除了预检命令。
+但是，此时去除Access-Control-Max-Age与Access-Control-Allow-Headers，则请求依然会成功，因为该请求已经被缓存。
+
+简单请求
+请求header里：
+1.无定义头
+2.Content-Type为以下几种：
+    text/plain
+    multipart/form-data
+    application/x-www-form-urlencoded
+常见方法为：GET、HEAD、POST
+
+非简单请求
+1.put，delete方法的aja请求
+2.发送json格式的ajax请求
+3.带自定义头的ajax请求
+对于非简单请求，浏览器会在htpp的请求头中添加一条字段：
+Access-Control-Request-Headers: Content-Type
+即：询问服务器是否允许这个Content-Type这个请求头
+此时，为了使得非简单请求通过预检，则需要在响应头中添加以下字段：
+Access-Control-Allow-Headers: Content-Type
+即支持Content-Type
 
 浏览器如何判断？
 仔细观察可以发现，跨域请求的请求头中多了一个Origin字段，这个字段的值是当前域的信息。

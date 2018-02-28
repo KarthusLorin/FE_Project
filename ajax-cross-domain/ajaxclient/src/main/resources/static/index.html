@@ -40,6 +40,28 @@
                 done();
             }, 100)    ;
         });
+
+        it ("postJson请求", function (done) {
+            var result;
+
+            $.ajax({
+                type: "post",
+                url: base + "/postJson",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify({name: "hubin"}),
+                success: function (json) {
+                    result = json;
+                }
+            });
+
+            setTimeout(function () {
+                expect(result).toEqual({
+                    "data": "postJsonhubin"
+                });
+
+                done();
+            }, 100)    ;
+        });
     });
 </script>
 </html>

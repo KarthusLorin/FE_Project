@@ -1,8 +1,6 @@
 package com.imooc;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/test")
@@ -12,5 +10,12 @@ public class TestController {
     private ResultBean get1() {
         System.out.println("TestController.get()");
         return new ResultBean("get1 ok");
+    }
+
+    @PostMapping("/postJson")
+    public ResultBean postJson(@RequestBody User user) {
+        System.out.println("TestController.postJson()");
+
+        return new ResultBean("postJson" + user.getName());
     }
 }
