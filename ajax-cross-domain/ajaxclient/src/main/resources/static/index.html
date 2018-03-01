@@ -56,7 +56,30 @@
 
             setTimeout(function () {
                 expect(result).toEqual({
-                    "data": "postJsonhubin"
+                    "data": "postJson hubin"
+                });
+
+                done();
+            }, 100)    ;
+        });
+
+        it ("getCookie请求", function (done) {
+            var result;
+
+            $.ajax({
+                type: "get",
+                url: base + "/getCookie",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (json) {
+                    result = json;
+                }
+            });
+
+            setTimeout(function () {
+                expect(result).toEqual({
+                    "data": "getCookie hubin"
                 });
 
                 done();

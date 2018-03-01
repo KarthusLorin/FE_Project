@@ -1,0 +1,9 @@
+Access-Control-Allow-Origin: *
+不能满足带Cookie的跨域请求
+
+当使用Cookie跨域的时候，origin必须是全匹配，不能使用*
+即，Access-Control-Allow-Origin: 请求方地址
+同时，需要添加Access-Control-Allow-Credentials为true
+即，Access-Control-Allow-Credentials: true
+
+只有当以上两点满足时，才能在满足正常跨域的情况下，能够使用带Cookie的跨域
