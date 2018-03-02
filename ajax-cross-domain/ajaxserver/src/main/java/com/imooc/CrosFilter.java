@@ -26,7 +26,15 @@ public class CrosFilter implements Filter {
         }
 
         res.addHeader("Access-Control-Allow-Methods", "*");
-        res.addHeader("Access-Control-Allow-Headers", "Content-Type");
+
+        String headers = req.getHeader("Access-Control-Request-Header");
+
+        // 支持所有自定义头
+        if (org.springframework.util.StringUtils.isEmpty(headers)) {
+            res.addHeader("Access-Control-Allow-Headers", headers);
+        }
+
+        res.addHeader("Access-Control-Allow-Headers", "Content-Type,x-header1,x-header2");
         res.addHeader("Access-Control-Max-Age", "3600");
 
         // enable cookie

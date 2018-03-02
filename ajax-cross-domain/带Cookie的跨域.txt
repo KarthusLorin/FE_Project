@@ -7,3 +7,5 @@ Access-Control-Allow-Origin: *
 即，Access-Control-Allow-Credentials: true
 
 只有当以上两点满足时，才能在满足正常跨域的情况下，能够使用带Cookie的跨域
+
+注意：发送的Cookie是被调用方域名的Cookie

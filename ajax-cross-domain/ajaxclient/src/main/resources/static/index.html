@@ -85,6 +85,32 @@
                 done();
             }, 100)    ;
         });
+
+        it ("getHeader请求", function (done) {
+            var result;
+
+            $.ajax({
+                type: "get",
+                url: base + "/getHeader",
+                headers: {
+                    "x-header1": "AAA"
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("x-header2", "BBB")
+                },
+                success: function (json) {
+                    result = json;
+                }
+            });
+
+            setTimeout(function () {
+                expect(result).toEqual({
+                    "data": "getHeaderAAA BBB"
+                });
+
+                done();
+            }, 100)    ;
+        });
     });
 </script>
 </html>
