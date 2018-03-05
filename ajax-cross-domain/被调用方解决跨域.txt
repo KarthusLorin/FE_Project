@@ -4,8 +4,6 @@
 1.apache/nginx（HTTP服务器）
 2.tomcat（应用服务器）
 
-被调用方 - Filter解决方案
-
 浏览器先执行还是先判断？
 执行跨域代码，发现后台服务器正常返回数据，再chrome的network中也可以找到返回的数据。
 所以，先浏览器先执行然后判断。
@@ -43,6 +41,8 @@ Access-Control-Allow-Headers: Content-Type
 浏览器发现请求是跨域的时候，会在当前请求的请求头中添加一个当前域的信息的字段，等返回后检查响应头中有没有相应的信息。
 如果没有，则报错。
 
+一：被调用方 - Filter解决方案
+
 Filter解决方案主要是在http响应头上添加如下信息：
 Access-Control-Allow-Origin: 域名
 只要域名包含请求头中Origin字段的值，则支持当前跨域
@@ -53,3 +53,18 @@ Access-Control-Allow-Origin: 域名
 如Access-Control-Allow-Methods: GET则表示只支持GET方法进行跨域
 如果Access-Control-Allow-Methods: * 则表示支持所有方法进行跨域，此时，写了和没写一样
 此字段可选，非必填
+
+二：被调用方 - Nginx解决方案
+
+使用Nginx配置代理服务器，前端请求地址改为Nginx配置代理服务器。
+在Nginx中配置Filter解决方案中类似的响应头可以实现
+
+三：被调用方 - Apache解决方案
+
+类似于Nginx解决方案，只不过使用Apache代替Nginx
+
+四：被调用方 - Spring框架解决方案
+
+Spring框架中有个名为@CrossOrigin的注解，该注解被用来处理跨域请求
+在使用Spring框架的基础上，在代码中使用@CrossOrigin注解，可以解决跨域问题
+@CrossOrigin既可以加在类中，也可以加在具体的方法中，加在类中代表着这个类所有的方法支持跨域，加在方法中代表着这个方法支持跨域。

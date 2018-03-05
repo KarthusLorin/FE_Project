@@ -1,0 +1,44 @@
+调用方解决跨域 - 隐藏跨域
+
+隐藏跨域的核心思路是通过反向代理隐藏跨域以欺骗浏览器
+
+什么是反向代理？
+访问同一个域名的两个不同url最终会去往两个不同的服务器
+
+一：反向代理 - Nginx配置
+
+在之前的被调用方解决跨域中，访问的请求是绝对地址，浏览器可以看到进行了跨域。
+而在这种方法中，使用的是相对地址，通过不同的相对地址使用Nginx进行转发，使得实际上跨域的那个地址看起来没有跨域，但是通过Nginx转发到不同的服务器上。
+
+例子：
+
+server {
+    listen 80;
+    a.com
+
+    location / {
+        proxy_pass http://localhost:8081/;
+    }
+
+    location /ajaxserver {
+        proxy_pass http://localhost:8080/;
+    }
+}
+
+结果：
+访问a.com实际上访问的是:http://localhost:8081/
+访问a/ajaxserver.com实际上访问的是:http://localhost:8080/
+实际上跨域，但是使用nginx反向代理隐藏了跨域
+
+二：反向代理 - Apache配置
+
+依然使用反向代理，但是该方法使用Apache，
+
+例子：
+<VirtualHost *:80>
+    ServerName a.com
+    ProxyPass /ajaxserver http://localhost:8080/
+    ProxyPass / http://localhost:8081/
+</VirtualHost>
+
+结果同Nginx配置
